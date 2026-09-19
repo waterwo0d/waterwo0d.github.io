@@ -3,15 +3,15 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>我的个人博客</title>
-    <meta name="author" content="cfh" />
-    <meta name="description" content="欢迎来到我的个人博客！" />
-    <meta name="keywords" content="" />
+    <title>Waterwood 的技术笔记</title>
+    <meta name="author" content="waterwo0d" />
+    <meta name="description" content="专注技术笔记：Hexo 建站、前端工程、后端开发与踩坑记录。" />
+    <meta name="keywords" content="Hexo,ParticleX,技术笔记,前端,后端,踩坑记录,waterwo0d" />
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
     />
-    <link rel="icon" href="/waterwood.github.io/images/avatar.jpg" />
+    <link rel="icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://s4.zstatic.net" />
 <script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
 <link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
@@ -32,21 +32,22 @@
     rel="stylesheet"
     href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
 />
-<script src="/waterwood.github.io/js/lib/highlight.js"></script>
+<script src="/js/lib/highlight.js"></script>
 
 
 
-<script src="/waterwood.github.io/js/lib/preview.js"></script>
+<script src="/js/lib/preview.js"></script>
 
 
 
 
 
-<script src="/waterwood.github.io/js/lib/home.js"></script>
+<script src="/js/lib/home.js"></script>
 
-<link rel="stylesheet" href="/waterwood.github.io/css/main.css" />
+<link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Waterwood 的技术笔记" type="application/atom+xml">
+</head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -54,37 +55,37 @@
                 <div id="loading-circle">
                     <h2>LOADING</h2>
                     <p>加载过慢请开启缓存 浏览器默认开启</p>
-                    <img src="/waterwood.github.io/images/loading.gif" />
+                    <img src="/images/loading.gif" />
                 </div>
             </div>
         </transition>
         <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
     <nav id="desktop-menu">
-        <a class="title" href="/waterwood.github.io/">
-            <span>我的个人博客</span>
+        <a class="title" href="/">
+            <span>WATERWOOD 的技术笔记</span>
         </a>
         
-        <a href="/waterwood.github.io/">
+        <a href="/">
             <i class="fa-solid fa-house fa-fw"></i>
             <span>&ensp;Home</span>
         </a>
         
-        <a href="/waterwood.github.io/about/">
+        <a href="/about/">
             <i class="fa-solid fa-id-card fa-fw"></i>
             <span>&ensp;About</span>
         </a>
         
-        <a href="/waterwood.github.io/archives/">
+        <a href="/archives/">
             <i class="fa-solid fa-box-archive fa-fw"></i>
             <span>&ensp;Archives</span>
         </a>
         
-        <a href="/waterwood.github.io/categories/">
+        <a href="/categories/">
             <i class="fa-solid fa-bookmark fa-fw"></i>
             <span>&ensp;Categories</span>
         </a>
         
-        <a href="/waterwood.github.io/tags/">
+        <a href="/tags/">
             <i class="fa-solid fa-tags fa-fw"></i>
             <span>&ensp;Tags</span>
         </a>
@@ -93,12 +94,12 @@
     <nav id="mobile-menu">
         <div class="title" @click="showMenuItems = !showMenuItems">
             <i class="fa-solid fa-bars fa-fw"></i>
-            <span>&emsp;我的个人博客</span>
+            <span>&emsp;WATERWOOD 的技术笔记</span>
         </div>
         <transition name="slide">
             <div class="items" v-show="showMenuItems">
                 
-                <a href="/waterwood.github.io/">
+                <a href="/">
                     <div class="item">
                         <div style="min-width: 20px; max-width: 50px; width: 10%">
                             <i class="fa-solid fa-house fa-fw"></i>
@@ -107,7 +108,7 @@
                     </div>
                 </a>
                 
-                <a href="/waterwood.github.io/about/">
+                <a href="/about/">
                     <div class="item">
                         <div style="min-width: 20px; max-width: 50px; width: 10%">
                             <i class="fa-solid fa-id-card fa-fw"></i>
@@ -116,7 +117,7 @@
                     </div>
                 </a>
                 
-                <a href="/waterwood.github.io/archives/">
+                <a href="/archives/">
                     <div class="item">
                         <div style="min-width: 20px; max-width: 50px; width: 10%">
                             <i class="fa-solid fa-box-archive fa-fw"></i>
@@ -125,7 +126,7 @@
                     </div>
                 </a>
                 
-                <a href="/waterwood.github.io/categories/">
+                <a href="/categories/">
                     <div class="item">
                         <div style="min-width: 20px; max-width: 50px; width: 10%">
                             <i class="fa-solid fa-bookmark fa-fw"></i>
@@ -134,7 +135,7 @@
                     </div>
                 </a>
                 
-                <a href="/waterwood.github.io/tags/">
+                <a href="/tags/">
                     <div class="item">
                         <div style="min-width: 20px; max-width: 50px; width: 10%">
                             <i class="fa-solid fa-tags fa-fw"></i>
@@ -156,7 +157,7 @@
     <div
         id="home-background"
         ref="homeBackground"
-        data-images="/waterwood.github.io/images/background.jpg"
+        data-images="/images/background.webp"
     ></div>
     <div id="home-info" @click="homeClick">
         <span class="loop"></span>
@@ -165,9 +166,9 @@
         <span class="loop"></span>
         <span class="info">
             <div class="wrap">
-                <h1>我的个人博客</h1>
-                <h3>Hexo 搭建的个人网站</h3>
-                <h5>欢迎来到我的个人博客！</h5>
+                <h1>Waterwood 的技术笔记</h1>
+                <h3>记录开发路上的问题与解法</h3>
+                <h5>专注技术笔记：Hexo 建站、前端工程、后端开发与踩坑记录。</h5>
             </div>
         </span>
     </div>
@@ -181,7 +182,7 @@
         
 
 <div class="post">
-    <a href="/waterwood.github.io/2025/09/10/hexo-github-pages-issues/">
+    <a href="/2025/09/10/hexo-github-pages-issues/">
         <h2 class="post-title">使用hexo制作个人博客，并使用GitHub Pages托管中遇到的一些问题和解决方法</h2>
     </a>
     <div class="category-and-date">
@@ -208,11 +209,11 @@
         
         
     </div>
-    <a href="/waterwood.github.io/2025/09/10/hexo-github-pages-issues/" class="go-post">阅读全文</a>
+    <a href="/2025/09/10/hexo-github-pages-issues/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
-    <a href="/waterwood.github.io/2025/09/09/The-First-Blog/">
+    <a href="/2025/09/09/The-First-Blog/">
         <h2 class="post-title">The First Blog</h2>
     </a>
     <div class="category-and-date">
@@ -239,7 +240,7 @@
         
         
     </div>
-    <a href="/waterwood.github.io/2025/09/09/The-First-Blog/" class="go-post">阅读全文</a>
+    <a href="/2025/09/09/The-First-Blog/" class="go-post">阅读全文</a>
 </div>
 
 
@@ -258,22 +259,26 @@
         <div id="card-style">
     <div id="card-div">
         <div class="avatar">
-            <img src="/waterwood.github.io/images/avatar.jpg" alt="avatar" />
+            <img src="/images/avatar.webp" alt="avatar" />
         </div>
-        <div class="name">cfh</div>
+        <div class="name">waterwo0d</div>
         <div class="description">
-            <p>Description<br>…</p>
+            <p>记录开发路上的问题与解法。<br>主要写 Hexo、前端工程与后端开发。</p>
 
         </div>
         
-        
-        <div class="friend-links">
+        <div class="icon-links">
             
-            <div class="friend-link">
-                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Argvchs</a>
-            </div>
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://github.com/waterwo0d">
+                    <i
+                        class="fa-brands fa-github fa-fw"
+                    ></i>
+                </a>
+            </span>
             
         </div>
+        
         
     </div>
 </div>
@@ -286,11 +291,11 @@
     <div id="footer-wrap">
         <div>
             &copy;
-            2022 - 2025 我的个人博客
+            2025 - 2026 Waterwood 的技术笔记
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>
-            &commat;cfh
+            &commat;waterwo0d
         </div>
         <div>
             Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
@@ -309,7 +314,7 @@
         </transition>
         
     </div>
-    <script src="/waterwood.github.io/js/main.js"></script>
+    <script src="/js/main.js"></script>
     
 </body>
 </html>

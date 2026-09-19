@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>waterwo0d</name>
+  </author>
+  <generator uri="https://hexo.io/">Hexo</generator>
+  <id>https://waterwo0d.github.io/</id>
+  <link href="https://waterwo0d.github.io/" rel="alternate"/>
+  <link href="https://waterwo0d.github.io/atom.xml" rel="self"/>
+  <rights>All rights reserved 2026, waterwo0d</rights>
+  <subtitle>记录开发路上的问题与解法</subtitle>
+  <title>Waterwood 的技术笔记</title>
+  <updated>2025-09-10T08:04:50.000Z</updated>
+  <entry>
+    <author>
+      <name>waterwo0d</name>
+    </author>
+    <content>
+      <![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>第一次尝试使用Hexo搭建自己的静态博客，选择了ParticleX主题，链接为<a href="https://github.com/theme-particlex/hexo-theme-particlex%EF%BC%8C%E5%90%8C%E6%97%B6%E5%B0%86%E5%8D%9A%E5%AE%A2%E6%89%98%E7%AE%A1%E5%9C%A8Github">https://github.com/theme-particlex/hexo-theme-particlex，同时将博客托管在Github</a> Pages上，过程并不困难，但是还是分享一下笔者遇到的一些问题以及解决方法，而并不是给出搭建步骤。</p><h1 id="1-Github创立仓库时的命名问题"><a href="#1-Github创立仓库时的命名问题" class="headerlink" title="1. Github创立仓库时的命名问题"></a>1. Github创立仓库时的命名问题</h1><h1 id="1-1-Github-Pages仓库类型"><a href="#1-1-Github-Pages仓库类型" class="headerlink" title="1.1 Github Pages仓库类型"></a>1.1 Github Pages仓库类型</h1><p>Github Pages支持两种类型的仓库，一种是用户&#x2F;组织站点（User&#x2F;Org site），一种是项目站点（Project site）。<br>用户&#x2F;组织站点（User&#x2F;Org site）命名为{username}.github.io，注意，你的站点是哪种站点是根据你的命名来的，你命名成这种格式就是用户&#x2F;组织站点。，这种站点的最后url一般是<a href="https://username.github.io,/">https://username.github.io，</a><br>项目站点（Project site）的仓库名可以是除了上述情况下的任意名字，站点的最后url一般是<a href="https://username.github.io/%7Brepository%7D/%E3%80%82">https://username.github.io/{repository}/。</a></p><h1 id="1-2-对-Hexo-博客的影响"><a href="#1-2-对-Hexo-博客的影响" class="headerlink" title="1.2 对 Hexo 博客的影响"></a>1.2 对 Hexo 博客的影响</h1><h1 id="1-2-1-情况1：用户站点"><a href="#1-2-1-情况1：用户站点" class="headerlink" title="1.2.1 情况1：用户站点"></a>1.2.1 情况1：用户站点</h1><p>假设仓库名是{username}.github.io，那么在项目中的配置文件_config.yml应该设置<br>url: https:&#x2F;&#x2F;{username}.github.io<br>root: &#x2F;  (有时候是path,具体看文件中是如何命名)<br>这样资源路径可以直接用 &#x2F;css&#x2F;main.css，首页 URL 就是 <a href="https://waterwo0d.github.io,hexo/">https://waterwo0d.github.io，Hexo</a> 生成文件直接部署到 master 或 main 分支即可</p><h1 id="1-2-2-情况2：项目站点"><a href="#1-2-2-情况2：项目站点" class="headerlink" title="1.2.2 情况2：项目站点"></a>1.2.2 情况2：项目站点</h1><p>只要你的仓库名不是{username}.github.io，就算是username.github.io(注意，这里没有用{}进行转义，和{username}.github.io是不一样的)。举个例子，假如你的用户名是abc,那么{username}.github.io就是abc.github.io,而不是name.github.io。<br>那么在项目的配置文件_config.yml文件中，应该设置<br>url: https:&#x2F;&#x2F;{username}.github.io&#x2F;{repository}<br>root: &#x2F;{repository}&#x2F;  (有时候是path,具体看文件中是如何命名)<br>所有静态资源引用都要加上 root 前缀，不然资源无法加载。</p><h1 id="1-2-3-实际情况"><a href="#1-2-3-实际情况" class="headerlink" title="1.2.3 实际情况"></a>1.2.3 实际情况</h1><p>Hexo 中 root 默认是 &#x2F;，表示相对于站点根目录，而很多第三方主题都会在资源引用中使用&lt;%&#x3D; url_for(…) %&gt;，这个会自动加上仓库路径，这种情况下，就算你的站点是项目站点，也不需要设置root: &#x2F;{repository}&#x2F; ，如果加了，反而会导致路径加载错误。例如，假设仓库名称是waterwood.github.io，这是项目站点，使用了ParticleX主题，如果再添加root: &#x2F;waterwood.github.io&#x2F;，那么就会导致资源路径重复，变成 &#x2F;waterwood.github.io&#x2F;waterwood.github.io&#x2F;css&#x2F;…，所以访问会出错。<br>所以在添加root或者path时，一定要清楚资源的加载路径是什么，如果不想读代码，也可以两个都试试，看看哪个成功加载（汗）。</p><h1 id="2-github-com能正常访问，但是无法进行git操作，也无法ping通"><a href="#2-github-com能正常访问，但是无法进行git操作，也无法ping通" class="headerlink" title="2. github.com能正常访问，但是无法进行git操作，也无法ping通"></a>2. github.com能正常访问，但是无法进行git操作，也无法ping通</h1><h1 id="2-1-遇到的问题"><a href="#2-1-遇到的问题" class="headerlink" title="2.1 遇到的问题"></a>2.1 遇到的问题</h1><p>当时想要使用git clone直接下载Particlex，但是却一直显示超时，也无法ping通github.com，但是笔者却能直接访问github.com，而这种情况也不是梯子带来的，关掉也是一样，使不使用校园网也并不影响，在网上搜了很多内容都没有解决，也不知道这是什么原因(等下次碰到弄清楚会第一时间更新)。</p><h1 id="2-1-解决方法"><a href="#2-1-解决方法" class="headerlink" title="2.1 解决方法"></a>2.1 解决方法</h1><p>解决方法很简单，只要修改你的hosts文件就行了(这种方法未必适合所有人，但是try一下也不会耽误什么时间)。<br>首先查询github.com的动态地址，可以使用<a href="https://www.ipaddress.com/website/www.github.com/%EF%BC%8C%E5%A4%8D%E5%88%B6%E4%B8%8BIP">https://www.ipaddress.com/website/www.github.com/，复制下IP</a> Addresses的结果，然后打开hosts文件，位置是C:\Windows\System32\drivers\etc，记得获得文件的读写权限。然后在文件最后加上这样的键值对：<br>IP Addresses的结果 ：github.com\</p><h1 id="3-持续更新中…"><a href="#3-持续更新中…" class="headerlink" title="3. 持续更新中…"></a>3. 持续更新中…</h1>]]>
+    </content>
+    <id>https://waterwo0d.github.io/2025/09/10/hexo-github-pages-issues/</id>
+    <link href="https://waterwo0d.github.io/2025/09/10/hexo-github-pages-issues/"/>
+    <published>2025-09-10T08:04:50.000Z</published>
+    <summary>总结了在使用 Hexo 和 ParticleX 主题制作博客，并部署到 GitHub Pages 时遇到的一些问题和解决方法。</summary>
+    <title>使用hexo制作个人博客，并使用GitHub Pages托管中遇到的一些问题和解决方法</title>
+    <updated>2025-09-10T08:04:50.000Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>waterwo0d</name>
+    </author>
+    <content>
+      <![CDATA[<p>Hello,world.<br>这是一篇使用 Hexo 创建的博客。</p>]]>
+    </content>
+    <id>https://waterwo0d.github.io/2025/09/09/The-First-Blog/</id>
+    <link href="https://waterwo0d.github.io/2025/09/09/The-First-Blog/"/>
+    <published>2025-09-09T08:39:48.000Z</published>
+    <summary>
+      <![CDATA[<p>Hello,world.<br>这是一篇使用 Hexo 创建的博客。</p>]]>
+    </summary>
+    <title>The First Blog</title>
+    <updated>2025-09-09T08:39:48.000Z</updated>
+  </entry>
+</feed>
